@@ -1,31 +1,39 @@
-var mysql = require ('mysql');
-
-var connection;
-
-if (process.env.JAWSDB_URL)
+var connection = require('../config/connection.js')
+var orm = 
 {
-	connection = mysql.createConnection(process.env.JAWSDB_URL);
-}
-else
-{
-	connection = mysql.createConnection(
+
+	selectAll: function(callback) 
 	{
-		host: 'localhost',
-		user: 'root',
-		password: 'yourRootPassword',
-		database: 'burgers_db'
-	});
+		connection.query('SELECT * FROM burgers', function(err, result)
+		{
+			if (err) throw err;
+			callback(result);
+		});
+	},
+
+	insertOne: function(burger_name, callback)
+	{
+		connection.query('INSERT INTO burgers SET ?', 
+			{	burger_name: burger_name,
+				devoured: false,
+			}, function(err, result)
+			{
+				if (err) throw err;
+				callback(result);
+			});
+				
+	},
+
+	updateOne: function(burgerID, callback)
+	{
+		connection.query('UPDATE burgers SET ? WHERE ?', [{devoured: true}, {id: burgerID}],
+			function(err, result)
+			{
+				if (err) throw err;
+				callback(result);
+			});
+	}
 };
 
 
-connection.connect(function(err) 
-{
-  if (err) 
-  {
-    console.error('error connecting: ' + err.stack);
-    return;
-  };
-  console.log('connected as id ' + connection.threadId);
-});
-
-module.exports = connection;
+module.exports = orm;
