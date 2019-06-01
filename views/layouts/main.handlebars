@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to McBurgs!</title>
+    <link rel="icon" href="assets/img/burgerimg.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="assets/css/burger_style.css">
+  </head>
+  <body>
+    <div class="container-fluid">
+    <center>
+      <div class="row">
+      <img src="assets/img/burgerimg.png" alt="Burger Img">
+    <div class="jumbotron">
+    <h1>McBurgs Burgers</h1>      
+    <p>Create your own burger and add it to our menu!</p>    
+    </center>
+      <br>
+      {{{body}}}
+      <br><br>
+      <form action="burger/create" method="POST"> 
+        <div class="row">
+          <div class="col-md-3"></div> 
+          <div class="form-group col-md-6">
+            <center><label for="new_burger" class="submitFont">Try something new</label></center>
+            <textarea class="form-control" type="text" columns="6" rows="2" id="new_burger required value=" name="burger_name"></textarea>
+          </div>  
+          <div class="col-md-3"></div> 
+        </div>
+        <center>
+          <button id="submit-button" type="submit" class="btn btn-danger">Ready my Burger!</button>
+        </center>
+
+      </form>
+
+      <br>
+
+    </div>
+
+  </body>
+</html> 
